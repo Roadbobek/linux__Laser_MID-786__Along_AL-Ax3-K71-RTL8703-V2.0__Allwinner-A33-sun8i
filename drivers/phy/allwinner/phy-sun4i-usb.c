@@ -270,6 +270,8 @@ static int sun4i_usb_phy_init(struct phy *_phy)
 		return ret;
 	}
 
+	reset_control_assert(phy->reset);
+	usleep_range(10, 20);
 	ret = reset_control_deassert(phy->reset);
 	if (ret) {
 		clk_disable_unprepare(phy->clk2);
